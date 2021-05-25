@@ -1,0 +1,11 @@
+name: literature_dashboard
+title:
+username:
+account: erc-maripoldata
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4183102
+bundleId: 4638168
+url: https://erc-maripoldata.shinyapps.io/literature_dashboard/
+when: 1621957317.25171
+lastSyncTime: 1621957317.25171

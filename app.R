@@ -33,14 +33,23 @@ require(kableExtra)
 library(png)
 library(openxlsx)
 
+
+
 default_background_color <- "#f5f5f2"
-
-
 
 # Reading Data #------------------------------------------------------------
 data <- read_excel("BBNJ_database_2021.xlsx")
 
+### clean data 
+names(data)[names(data) == "Thematic Group"] <- "topic"
+names(data)[names(data) == "Year"] <- "year"
+names(data)[names(data) == "Region"] <- "region"
 
+
+### add "all" rows 
+#data <- data %>% add_row(topic = "All")
+
+    
 #----------------------------------------------------
 
 manual <- "This MARIPOLDATA Marine Biodiversity Literature Dashboard 
@@ -63,15 +72,30 @@ ui <- fluidPage(
             tags$a(href="https://politikwissenschaft.univie.ac.at/",
                    tags$img(src='Politikwissenschaft_en_4c.png', height='120', width='360')),
             
-            titlePanel('Marine Biodiversity Country Dashboard'),
+            titlePanel('Biodiversity Beyond National Jurisdiction Literature Dashboard'),
             tags$a(href="https://www.un.org/bbnj/",
                    "Link to the Biodiversity Beyond National Jurisdiction (BBNJ) negotiations."),
             tabPanel("Manual",
                      textOutput(outputId = "manual")),
             selectInput(inputId = "topic",
-                        label = "Choose a Thematic Group",
-                        selected = "general BBNJ",
-                        choices = c("general BBNJ", sort(unique(data$`Thematic Group`)))),
+                        label = "Choose a topic (multiple possible):",
+                   #     selected = "general BBNJ",
+                        multiple = TRUE, 
+                        choices = c(sort(unique(data$topic)))),
+            selectInput(inputId = "year",
+                        label = "Choose a year (multiple possible:",
+                #        selected = "",
+                        multiple = TRUE, 
+                # selectize = FALSE,
+                        choices = c(sort(unique(data$year)))),
+            
+            selectInput(inputId = "region",
+                        label = "Choose a region (multiple possible:",
+                        #        selected = "",
+                        multiple = TRUE, 
+                        # selectize = FALSE,
+                        choices = c(sort(unique(data$region)))),
+            
             tabPanel("ERC",
                      tags$a(href="https://erc.europa.eu/",
                             tags$img(src='Logo_E.png', height='120', width='260')),
@@ -92,16 +116,28 @@ ui <- fluidPage(
 
 
 
-# Define server logic required to draw a histogram
 server <- function(input, output) {
-    
-    
-    output$title <- renderText({
-        data %>% filter(`Thematic Group` == "input$topic") %>% 
-            select(Source) %>% 
-            print()
+    # Dashboard General Description
+    output$manual <- renderText({
+        HTML(manual)
     })
     
+    # ERC Header
+    output$erc <- renderText({
+        HTML(erc)
+    })
+    
+    # Version Header
+    output$version <- renderText({
+        HTML(version)
+    })
+    
+    
+    output$title <- renderTable({
+        data %>% 
+            dplyr::filter(topic %in% input$topic & year %in% input$year & region %in% input$region) %>% 
+            select(Source) })
+
     
 }
 # Run the application 
