@@ -77,11 +77,11 @@ ui <- fluidPage(
                    "Link to the Biodiversity Beyond National Jurisdiction (BBNJ) negotiations."),
             tabPanel("Manual",
                      textOutput(outputId = "manual")),
-            selectInput(inputId = "topic",
-                        label = "Choose a topic (multiple possible):",
-                   #     selected = "general BBNJ",
-                        multiple = TRUE, 
-                        choices = c(sort(unique(data$topic)))),
+            # selectInput(inputId = "topic",
+            #             label = "Choose a topic (multiple possible):",
+            #        #     selected = "general BBNJ",
+            #             multiple = TRUE, 
+            #             choices = c(sort(unique(data$topic)))),
             selectInput(inputId = "year",
                         label = "Choose a year (multiple possible:",
                 #        selected = "",
@@ -107,8 +107,18 @@ ui <- fluidPage(
                              
                              tabPanel(h4("BBNJ Literature Overview"),
                                       tabsetPanel(
-                                          tabPanel("List of Publications",
-                                                   htmlOutput(outputId = "title"))
+                                          tabPanel("MGRs",
+                                                   htmlOutput(outputId = "mgr")),
+                                              tabPanel("ABMTs/MPAs",
+                                                       htmlOutput(outputId = "abmt")),
+                                                       tabPanel("EIAs",
+                                                                htmlOutput(outputId = "eia")),
+                                                                tabPanel("CB&TT",
+                                                                         htmlOutput(outputId = "cbtt")),
+                                                                         tabPanel("Crosscutting",
+                                                                                  htmlOutput(outputId = "cc")),
+                                          tabPanel("Other",
+                                                   htmlOutput(outputId = "other"))
                                       ))
         ))
     ))
@@ -133,12 +143,34 @@ server <- function(input, output) {
     })
     
     
-    output$title <- renderTable({
+    output$mgr <- renderTable({
         data %>% 
-            dplyr::filter(topic %in% input$topic & year %in% input$year & region %in% input$region) %>% 
-            select(Source) })
+            dplyr::filter(topic == "MGRs" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
 
+    output$abmt <- renderTable({
+        data %>% 
+            dplyr::filter(topic == "ABMTs/MPAs" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
     
+    output$eia <- renderTable({
+        data %>% 
+            dplyr::filter(topic == "EIAs" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
+    
+    output$cbtt <- renderTable({
+        data %>% 
+            dplyr::filter(topic == "CB&TT" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
+    output$cc <- renderTable({
+        data %>% 
+            dplyr::filter(topic == "Crosscutting" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
+    
+    output$other <- renderTable({
+        data %>% 
+            dplyr::filter(topic == "Other" & year %in% input$year & region %in% input$region) %>% 
+            select(show) })
 }
 # Run the application 
 shinyApp(ui = ui, server = server)
