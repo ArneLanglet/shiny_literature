@@ -47,12 +47,15 @@ names(data)[names(data) == "Region"] <- "region"
 names(data)[names(data) == "Keywords (Author and plus)"] <- "Keywords"
 
 
-
 #### prepare keywords list to select input from
+
 words <- data %>% filter(!is.na(Keywords)) %>%
     select(Keywords) %>% 
     as.list()
-    
+
+words$Keywords <- gsub(";", ",", words$Keywords)
+
+
 words <- words$Keywords %>% str_split(", ") %>% 
     unlist()
 
@@ -121,7 +124,7 @@ ui <- fluidPage(
                             tags$img(src='Logo_E.png', height='120', width='260')),
                      textOutput(outputId = "erc")),
             tabPanel("Version",
-                     textOutput(outputId = "version")),
+                     textOutput(outputId = "version"))
         ),
         mainPanel(navbarPage(title = "",
                              
@@ -132,13 +135,13 @@ ui <- fluidPage(
                                               tabPanel("ABMTs/MPAs",
                                                        dataTableOutput(outputId = "abmt")),
                                                        tabPanel("EIAs",
-                                                                htmlOutput(outputId = "eia")),
+                                                                dataTableOutput(outputId = "eia")),
                                                                 tabPanel("CB&TT",
-                                                                         htmlOutput(outputId = "cbtt")),
+                                                                         dataTableOutput(outputId = "cbtt")),
                                                                          tabPanel("Crosscutting",
-                                                                                  htmlOutput(outputId = "cc")),
+                                                                                  dataTableOutput(outputId = "cc")),
                                           tabPanel("Other",
-                                                   htmlOutput(outputId = "other"))
+                                                   dataTableOutput(outputId = "other"))
                                       ))
         ))
     ))
@@ -165,18 +168,18 @@ server <- function(input, output) {
     
     ########################## keywords section to be finished
     
-    words2 <- data %>% filter(!is.na(Keywords)) %>%
-        select(Keywords) %>% 
-        as.list()
-    
-    input <- words2$Keywords %>% str_split(", ")
-    
-    
-    y <- for (i in input){ for (j in i) {print(j %in% input$words)}} 
+    # words2 <- data %>% filter(!is.na(Keywords)) %>%
+    #     select(Keywords) %>%
+    #     as.list()
+    # 
+    # input <- words2$Keywords %>% str_split(", ")
+    # 
+    # 
+    # y <- for (i in input){ for (j in i) {print(j %in% input$words)}}
     ############################
     
     output$mgr <- renderDataTable({
-       html_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
+       my_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
             data %>% 
                 dplyr::filter(topic == "MGRs") %>% 
                 select(show) %>% 
@@ -184,51 +187,47 @@ server <- function(input, output) {
         } else if((length(input$region) == 0)) {
             data %>%
                 dplyr::filter(topic == "MGRs" & year %in% input$year) %>% 
-                select(show) %>% 
-                print(HTML())
+                select(show) 
         } else if((length(input$year) == 0)) {
             data %>%
                 dplyr::filter(topic == "MGRs" & region %in% input$region) %>% 
-                select(show) %>% 
-                print(HTML())
+                select(show)
         } else if((length(input$words) == 0)) {
             data %>%
                 dplyr::filter(topic == "MGRs" & region %in% input$region & year %in% input$year) %>% 
-                select(show) %>% 
-                print(HTML())
+                select(show) 
         } else {
         data %>% 
             dplyr::filter(topic == "MGRs" & year %in% input$year & region %in% input$region) %>% 
-            select(show) %>% 
-                print(HTML())}
-       html_table
-        })
+            select(show) }
+       return(my_table)
+        }, escape = FALSE)
 
     output$abmt <- renderDataTable({
         my_table <- (
-            if((length(input$year) == 0) & (length(input$region) == 0)) {
+            if(((length(input$year) == 0)) & ((length(input$region) == 0))) {
                 data %>% 
                     dplyr::filter(topic == "ABMTs/MPAs") %>% 
                     select(show)
             } else if((length(input$region) == 0)) {
                 data %>%
-                    dplyr::filter(topic == "ABMTs/MPAs" & year %in% input$year) %>% 
+                    dplyr::filter((topic == "ABMTs/MPAs") & (year %in% input$year)) %>% 
                     select(show)
             } else if((length(input$year) == 0)) {
                 data %>%
-                    dplyr::filter(topic == "ABMTs/MPAs" & region %in% input$region) %>% 
+                    dplyr::filter((topic == "ABMTs/MPAs") & (region %in% input$region)) %>% 
                     select(show)
             } else { 
                 data %>% 
-                    dplyr::filter(topic == "ABMTs/MPAs" & year %in% input$year & region %in% input$region) %>% 
+                    dplyr::filter((topic == "ABMTs/MPAs") & (year %in% input$year) & (region %in% input$region)) %>% 
                     select(show)}
         )
         return(my_table)
         
         }, escape = FALSE)
     
-    output$eia <- renderTable({
-        if((length(input$year) == 0) & (length(input$region) == 0)) {
+    output$eia <- renderDataTable({
+        my_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
             data %>%
                 dplyr::filter(topic == "EIAs") %>%
                 select(show)
@@ -245,10 +244,11 @@ server <- function(input, output) {
                 dplyr::filter(topic == "EIAs" & year %in% input$year & region %in% input$region) %>% 
                 select(show) 
         } 
-        })
+        return(my_table)
+        }, escape = FALSE)
     
-    output$cbtt <- renderTable({
-        if((length(input$year) == 0) & (length(input$region) == 0)) {
+    output$cbtt <- renderDataTable({
+        my_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
             data %>% 
                 dplyr::filter(topic == "CB&TT") %>% 
                 select(show)
@@ -267,12 +267,14 @@ server <- function(input, output) {
         else {
             data %>% 
                 dplyr::filter(topic == "CB&TT" & year %in% input$year & region %in% input$region) %>% 
-                select(show) }
-        })
+                select(show) 
+            }
+        return(my_table)
+        }, escape = FALSE)
    
     
-     output$cc <- renderTable({
-        if((length(input$year) == 0) & (length(input$region) == 0)) {
+     output$cc <- renderDataTable({
+        my_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
             data %>% 
                 dplyr::filter(topic == "Crosscutting") %>% 
                 select(show)
@@ -291,11 +293,13 @@ server <- function(input, output) {
         else {
             data %>% 
                 dplyr::filter(topic == "Crosscutting" & year %in% input$year & region %in% input$region) %>% 
-                select(show) }
-        })
+                select(show) 
+        }
+        return(my_table)
+        }, escape = FALSE)
     
-    output$other <- renderTable({
-        if((length(input$year) == 0) & (length(input$region) == 0)) {
+    output$other <- renderDataTable({
+        my_table <- if((length(input$year) == 0) & (length(input$region) == 0)) {
             data %>% 
                 dplyr::filter(topic == "other") %>% 
                 select(show)
@@ -314,8 +318,10 @@ server <- function(input, output) {
         else {
             data %>% 
                 dplyr::filter(topic == "other" & year %in% input$year & region %in% input$region) %>% 
-                select(show) }
-        })
+                select(show) 
+        }
+        return(my_table)
+        },escape = FALSE)
     
 }
 # Run the application 
