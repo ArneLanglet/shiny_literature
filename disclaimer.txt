@@ -1,0 +1,4 @@
+Please cite as: 
+Tessnow-von Wysocki, I.; Langlet, A.; Vadrot, A.B.M. (2021). BBNJ Governance Literature Database [Database]. DOI:10.25365/phaidra.278. Retrieved from 
+https://erc-maripoldata.shinyapps.io/bbnj_literature_database/
+<p> This application is licensed under Creative Common License BY-NC-ND 4.0 

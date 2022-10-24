@@ -1,0 +1,42 @@
+The database emerged out of the publication <a href="https://www.frontiersin.org/articles/10.3389/fmars.2020.614282/full">“The Voice of Science on Marine Biodiversity Negotiations: A
+ Systematic Literature Review”</a>
+and continues the methodology obtained for data collection for the literature review. 
+The database includes peer-reviewed literature on the BBNJ process. In the following, we describe the methodology of including publications in this database.
+<p>
+
+The data was collected and the database created in a three-stage process, being aware of the PRISMA-P guidelines <a href="https://www.frontiersin.org/articles/10.3389/fmars.2020.614282/full#B108">(Moher et al., 2015)</a>, 
+
+by first developing keywords and undertaking search in Web of Science; second screening of titles, abstracts and keywords of all publications, 
+and third assessment for eligibility of all full texts of publications to follow a systematic inclusion and exclusion. The database is further complemented by the inclusion of
+ additional relevant publications (such as publications which were not found through initial search due to e.g., use of different terminology: beyond 
+national boundaries), using reference lists, additional searches through other search engines, e.g. google scholar searches and contacts to the BBNJ community. 
+<p>
+
+<em>Keywords used for Web of Science Search</em>
+<br>
+• “BBNJ”
+<br>
+• “biodiversity beyond national jurisdiction”
+<br>• “marine biodiversity” AND “ABNJ”
+<br>• “marine biodiversity” AND “areas beyond national jurisdiction”
+<br>• “marine biological diversity” AND “ABNJ”
+<br>• “marine biological diversity” AND “areas beyond national jurisdiction”
+<br>• conservation and sustainable use of biological diversity in areas beyond national jurisdiction
+<br>• conservation and sustainable use of biodiversity in areas beyond national jurisdiction
+<br>• “biodiversity” AND “beyond national jurisdiction*”
+<br>• “biological diversity” AND “beyond national jurisdiction*” 
+<br>• “biodiversity” AND “ABNJ” 
+<br>• “biological diversity” AND “ABNJ” 
+<br>• “biological diversity” AND “beyond national jurisdiction*”
+<br>
+<p>
+
+<em>Criteria for inclusion</em>
+
+The database includes publications that either directly mention the BBNJ agreement or process; or have direct relevance to the BBNJ negotiations. 
+While we acknowledge the existence of a significant body of literature that is relevant to BBNJ topics without directly referring to the political process, 
+this database includes the academic literature that explicitly refers to the agreement—i.e., draws explicit links between research and the future BBNJ treaty, 
+presents original research on the process itself, or comments on different aspects of the agreement, making concrete recommendations and proposing solutions. 
+Since this database exclusively focuses on marine biodiversity in areas <em>beyond</em> national jurisdiction and the current BBNJ negotiations, remaining articles extend the scope.
+Region of publication is here defined by the institution of the first author and does not account for collaboration of authors from different countries. For scientific collaborations of authors please see research by 
+<a href="https://www.sciencedirect.com/science/article/pii/S0308597X20309659">Tolochko & Vadrot (2021)</a>. 

@@ -1,0 +1,24 @@
+The United Nations are currently negotiating a new legally binding agreement for the conservation and sustainable use of marine biological diversity beyond national jurisdiction (BBNJ).
+The BBNJ process began with Ad-Hoc Informal Working Group and Preparatory Committee Meetings (2005-2018) and then formally started with the Intergovernmental Conferences (IGCs). 
+<a href="https://undocs.org/en/a/res/72/249">Resolution 72/249</a> sets out four IGC meetings, the last one of which was postponed due to the COVID-19 pandemic.
+ During this intersessional period until the planned-to-be-final conference will take place, negotiations continue informally through online exchanges, 
+such as online dialogues, organized by Belgium, Costa Rica, Monaco and NGOs (High Seas Treaty Dialogues), as well as an intersessional work platform organized by the BBNJ Secretariat,
+Division for Ocean Affairs and the Law of the Sea (UNDOALOS).
+<p>
+<p>
+
+This database compiles scientific, peer-reviewed literature on the BBNJ process in English language.
+It is a comprehensive overview of all BBNJ literature from its beginnings (in 2004) until early 2021 and is continuously updated by the MARIPOLDATA team. 
+Users of the database can easily navigate through a large amount of publications by filtering for specific package elements of the agreement, keywords and years of publications. 
+Abstracts to all publications (where available) are provided to give a brief overview, as well as immediate access through a link that leads to the official publication website. Statistics are provided to show distributions of publications by topic, year, region and source. 
+This database provides a structured, facilitated access to existing scientific publications and therefore serves to inform BBNJ decision-makers, practitioners and incentivizes further 
+academic debates within the BBNJ scientific community. 
+
+<p>
+
+<b> Questions? Contact the team 
+For more information regarding the MARIPOLDATA project, please contact Principle Investigator <a href= "mailto: alice.vadrot@univie.ac.at">Assoc. Prof. Dr. Alice Vadrot</a>.  
+For information regarding the methodology or if you are an author of a publication that concerns BBNJ but is not yet in the database, please get in contact with <a href=
+"mailto: ina.tessnow-vonwysocki@univie.ac.at"> Ina Tessnow-von Wysocki </a>.
+For any technical problems with the database, please contact <a href = "mailto: arne.langlet@univie.ac.at"> Arne Langlet </a>.
+</b>

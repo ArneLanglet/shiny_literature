@@ -1,0 +1,11 @@
+name: bbnj_literature_database
+title:
+username:
+account: erc-maripoldata
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4356841
+bundleId: 6195575
+url: https://erc-maripoldata.shinyapps.io/bbnj_literature_database/
+when: 1660313298.5906
+lastSyncTime: 1660313298.5906

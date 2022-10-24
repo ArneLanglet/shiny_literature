@@ -14,6 +14,7 @@ rsconnect::setAccountInfo(name='erc-maripoldata',
                           secret='yeQ7/SJGn/K9XnKEyO+PYK0dEvGzueLGCDsLC/2J')
 
 rsconnect::deployApp(
-  appName = "literature_dashboard", 
+  appName = "bbnj_literature_database", 
   account = "erc-maripoldata")
+
 
